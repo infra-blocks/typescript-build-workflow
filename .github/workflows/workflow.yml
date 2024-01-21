@@ -3,38 +3,42 @@ name: Your Reusable Workflow
 on:
   workflow_call:
     inputs:
-      example-input:
-        description: An example input
+      node-version-file:
         type: string
-        required: true
+        description: The NodeJs version file passed to actions/setup-node.
+        required: false
+      node-version:
+        type: string
+        description: The NodeJS version passed to actions/setup-node.
+        required: false
     secrets:
-      example-secret:
-        description: An example secret
-        required: true
-    outputs:
-      example-output:
-        description: An example output
-        value: ${{ jobs.example-job.outputs.example-output }}
+      codecov-token:
+        description: The Codecov token to publish code coverage.
+        required: false
 
-# The set of permissions your workflow needs.
 permissions:
-  pull-requests: read
-
-# The concurrency of your workflow.
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  contents: read
 
 jobs:
-  example-job:
+  build:
     runs-on: ubuntu-22.04
-    outputs:
-      example-output: ${{ steps.example-step.outputs.example-output }}
     steps:
-      - name: Example step
-        id: example-step
-        env:
-          BIG_SECRET: ${{ secrets.example-secret }}
+      - name: Parse inputs
+        id: parse-inputs
         run: |
-          echo "your input: ${{ inputs.example-input }}"
-          echo "example-output=toto" >> "${GITHUB_OUTPUT}"
+          echo "with-coverage=${{ secrets.codecov-token != '' }}" >> "${GITHUB_OUTPUT}"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ${{ inputs.node-version-file }}
+          node-version: ${{ inputs.node-version }}
+          cache: npm
+      - run: npm ci
+      - run: npm run compile
+      - run: npm run build
+      - run: npm run lint
+      - run: npm run test:coverage:lcov
+      - if: ${{ steps.parse-inputs.outputs.with-coverage == 'true' }}
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.codecov-token }}
