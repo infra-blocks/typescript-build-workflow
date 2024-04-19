@@ -6,10 +6,11 @@ Runs a set of conventional scripts to build Typescript projects.
 
 ## Inputs
 
-|       Name        | Required | Description                                                                                                            |
-|:-----------------:|:--------:|------------------------------------------------------------------------------------------------------------------------|
-| node-version-file |  false   | The NodeJs version file passed to actions/setup-node. One of `node-version-file` or `node-version` should be provided. |
-|   node-version    |  false   | The NodeJs version passed to actions/setup-node. One of `node-version-file` or `node-version` should be provided.      |
+|       Name        | Required | Description                                                                                                                                                                  |
+|:-----------------:|:--------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| node-version-file |  false   | The NodeJs version file passed to actions/setup-node. One of `node-version-file` or `node-version` should be provided.                                                       |
+|   node-version    |  false   | The NodeJs version passed to actions/setup-node. One of `node-version-file` or `node-version` should be provided.                                                            |
+|       skip        |  false   | A boolean indicating whether to skip the workflow. This is to workaround the required checks discrepancy when the workflow is skipped from the caller. It defaults to false. |
 
 ## Secrets
 

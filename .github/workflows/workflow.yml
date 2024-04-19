@@ -11,6 +11,11 @@ on:
         type: string
         description: The NodeJS version passed to actions/setup-node.
         required: false
+      skip:
+        type: boolean
+        description: Whether to skip the workflow or not.
+        required: false
+        default: false
     secrets:
       codecov-token:
         description: The Codecov token to publish code coverage.
@@ -21,6 +26,7 @@ permissions:
 
 jobs:
   build:
+    if: ${{ !inputs.skip }}
     runs-on: ubuntu-22.04
     steps:
       - name: Parse inputs
