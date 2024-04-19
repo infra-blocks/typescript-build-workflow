@@ -7,6 +7,11 @@ on:
         description: An example input
         type: string
         required: true
+      skip:
+        type: boolean
+        description: Whether to skip the workflow or not.
+        required: false
+        default: false
     secrets:
       example-secret:
         description: An example secret
@@ -27,6 +32,7 @@ concurrency:
 
 jobs:
   example-job:
+    if: ${{ !inputs.skip }}
     runs-on: ubuntu-22.04
     outputs:
       example-output: ${{ steps.example-step.outputs.example-output }}
