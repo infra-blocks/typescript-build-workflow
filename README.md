@@ -14,9 +14,10 @@ upon instantiating this template:
 
 ## Inputs
 
-|     Name      | Required | Description       |
-|:-------------:|:--------:|-------------------|
-| example-input |   true   | An example input. |
+|     Name      | Required | Description                                                                                                                                                                  |
+|:-------------:|:--------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| example-input |   true   | An example input.                                                                                                                                                            |
+|     skip      |  false   | A boolean indicating whether to skip the workflow. This is to workaround the required checks discrepancy when the workflow is skipped from the caller. It defaults to false. |
 
 ## Secrets
 
