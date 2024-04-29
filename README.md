@@ -11,6 +11,7 @@ upon instantiating this template:
     - Add the `Update From Template` status badge.
     - Rename the rest of the links to point to the right repository.
 - Edit this document and update the relevant sections
+- Prepare the [changelog](CHANGELOG.md) for the first version of the module that will be released.
 
 ## Inputs
 
