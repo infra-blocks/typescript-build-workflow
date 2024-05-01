@@ -25,12 +25,25 @@ permissions:
   contents: read
 
 jobs:
+<<<<<<< HEAD
   build:
     if: ${{ !inputs.skip }}
+=======
+  example-job:
+>>>>>>> template/master
     runs-on: ubuntu-22.04
     steps:
+<<<<<<< HEAD
       - name: Parse inputs
         id: parse-inputs
+=======
+      # This condition should be on every step.
+      - if: ${{ !inputs.skip }}
+        id: example-step
+        name: Example step
+        env:
+          BIG_SECRET: ${{ secrets.example-secret }}
+>>>>>>> template/master
         run: |
           echo "with-coverage=${{ secrets.codecov-token != '' }}" >> "${GITHUB_OUTPUT}"
       - uses: actions/checkout@v4
