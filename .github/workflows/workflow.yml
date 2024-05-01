@@ -32,13 +32,14 @@ concurrency:
 
 jobs:
   example-job:
-    if: ${{ !inputs.skip }}
     runs-on: ubuntu-22.04
     outputs:
       example-output: ${{ steps.example-step.outputs.example-output }}
     steps:
-      - name: Example step
+      # This condition should be on every step.
+      - if: ${{ !inputs.skip }}
         id: example-step
+        name: Example step
         env:
           BIG_SECRET: ${{ secrets.example-secret }}
         run: |
