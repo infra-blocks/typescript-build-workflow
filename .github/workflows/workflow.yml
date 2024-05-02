@@ -26,25 +26,32 @@ permissions:
 
 jobs:
   build:
-    if: ${{ !inputs.skip }}
     runs-on: ubuntu-22.04
     steps:
-      - name: Parse inputs
+      - if: ${{ !inputs.skip }}
+        name: Parse inputs
         id: parse-inputs
         run: |
           echo "with-coverage=${{ secrets.codecov-token != '' }}" >> "${GITHUB_OUTPUT}"
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - if: ${{ !inputs.skip }}
+        uses: actions/checkout@v4
+      - if: ${{ !inputs.skip }}
+        uses: actions/setup-node@v4
         with:
           node-version-file: ${{ inputs.node-version-file }}
           node-version: ${{ inputs.node-version }}
           cache: npm
-      - run: npm ci
-      - run: npm run compile
-      - run: npm run build
-      - run: npm run lint
-      - run: npm run test:coverage:lcov
-      - if: ${{ steps.parse-inputs.outputs.with-coverage == 'true' }}
+      - if: ${{ !inputs.skip }}
+        run: npm ci
+      - if: ${{ !inputs.skip }}
+        run: npm run compile
+      - if: ${{ !inputs.skip }}
+        run: npm run build
+      - if: ${{ !inputs.skip }}
+        run: npm run lint
+      - if: ${{ !inputs.skip }}
+        run: npm run test:coverage:lcov
+      - if: ${{ !inputs.skip && steps.parse-inputs.outputs.with-coverage == 'true' }}
         uses: codecov/codecov-action@v3
         env:
           CODECOV_TOKEN: ${{ secrets.codecov-token }}
