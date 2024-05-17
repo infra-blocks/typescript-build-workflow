@@ -1,6 +1,6 @@
 # typescript-build-workflow
-[![Release](https://github.com/infrastructure-blocks/typescript-build-workflow/actions/workflows/release.yml/badge.svg)](https://github.com/infrastructure-blocks/typescript-build-workflow/actions/workflows/release.yml)
-[![Update From Template](https://github.com/infrastructure-blocks/typescript-build-workflow/actions/workflows/update-from-template.yml/badge.svg)](https://github.com/infrastructure-blocks/typescript-build-workflow/actions/workflows/update-from-template.yml)
+[![Release](https://github.com/infra-blocks/typescript-build-workflow/actions/workflows/release.yml/badge.svg)](https://github.com/infra-blocks/typescript-build-workflow/actions/workflows/release.yml)
+[![Update From Template](https://github.com/infra-blocks/typescript-build-workflow/actions/workflows/update-from-template.yml/badge.svg)](https://github.com/infra-blocks/typescript-build-workflow/actions/workflows/update-from-template.yml)
 
 Runs a set of conventional scripts to build Typescript projects.
 
@@ -49,7 +49,7 @@ permissions:
 
 jobs:
   build:
-    uses: infrastructure-blocks/typescript-build-workflow/.github/workflows/workflow.yml@v1
+    uses: infra-blocks/typescript-build-workflow/.github/workflows/workflow.yml@v1
     with:
       node-version-file: .nvmrc
     secrets:
@@ -59,4 +59,4 @@ jobs:
 ### Releasing
 
 The releasing is handled at git level with semantic versioning tags. Those are automatically generated and managed
-by the [git-tag-semver-from-label-workflow](https://github.com/infrastructure-blocks/git-tag-semver-from-label-workflow).
+by the [git-tag-semver-from-label-workflow](https://github.com/infra-blocks/git-tag-semver-from-label-workflow).
