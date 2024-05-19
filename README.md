@@ -1,6 +1,6 @@
 # github-actions-workflow-template
-[![Release](https://github.com/infrastructure-blocks/github-actions-workflow-template/actions/workflows/release.yml/badge.svg)](https://github.com/infrastructure-blocks/github-actions-workflow-template/actions/workflows/release.yml)
-[![Trigger Update From Template](https://github.com/infrastructure-blocks/github-actions-workflow-template/actions/workflows/trigger-update-from-template.yml/badge.svg)](https://github.com/infrastructure-blocks/github-actions-workflow-template/actions/workflows/trigger-update-from-template.yml)
+[![Release](https://github.com/infra-blocks/github-actions-workflow-template/actions/workflows/release.yml/badge.svg)](https://github.com/infra-blocks/github-actions-workflow-template/actions/workflows/release.yml)
+[![Trigger Update From Template](https://github.com/infra-blocks/github-actions-workflow-template/actions/workflows/trigger-update-from-template.yml/badge.svg)](https://github.com/infra-blocks/github-actions-workflow-template/actions/workflows/trigger-update-from-template.yml)
 
 This repository is a template for creating reusable GitHub Actions Workflows. Go through the below checklist
 upon instantiating this template:
@@ -60,7 +60,7 @@ permissions:
 
 jobs:
   example-job:
-    uses: infrastructure-blocks/github-actions-workflow-template/.github/workflows/workflow.yml@v1
+    uses: infra-blocks/github-actions-workflow-template/.github/workflows/workflow.yml@v1
     with:
       example-input: Nobody cares
     secrets:
@@ -70,4 +70,4 @@ jobs:
 ### Releasing
 
 The releasing is handled at git level with semantic versioning tags. Those are automatically generated and managed
-by the [git-tag-semver-from-label-workflow](https://github.com/infrastructure-blocks/git-tag-semver-from-label-workflow).
+by the [git-tag-semver-from-label-workflow](https://github.com/infra-blocks/git-tag-semver-from-label-workflow).
